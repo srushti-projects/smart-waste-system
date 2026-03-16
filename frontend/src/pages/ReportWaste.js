@@ -3,9 +3,29 @@ import { useState } from "react";
 function ReportWaste() {
 
   const [image, setImage] = useState(null);
+  const [location, setLocation] = useState(null);
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
+  };
+
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+      },
+      () => {
+        alert("Unable to retrieve location");
+      }
+    );
   };
 
   return (
@@ -30,10 +50,20 @@ function ReportWaste() {
 
       {/* Location Button */}
       <div className="mb-4">
-        <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button
+          onClick={getLocation}
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
           Detect My Location
         </button>
       </div>
+
+      {/* Show Location */}
+      {location && (
+        <p className="mb-4 text-sm text-gray-600">
+          Latitude: {location.lat} | Longitude: {location.lng}
+        </p>
+      )}
 
       {/* Submit */}
       <button className="w-full bg-green-700 text-white py-3 rounded hover:bg-green-800">
