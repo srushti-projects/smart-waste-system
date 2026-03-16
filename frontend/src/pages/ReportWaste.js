@@ -1,12 +1,14 @@
 import { useState } from "react";
 
 function ReportWaste() {
-
   const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
   const [location, setLocation] = useState(null);
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const file = e.target.files[0];
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
   };
 
   const getLocation = () => {
@@ -19,7 +21,7 @@ function ReportWaste() {
       (position) => {
         setLocation({
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         });
       },
       () => {
@@ -30,7 +32,6 @@ function ReportWaste() {
 
   return (
     <div className="max-w-xl mx-auto mt-10 bg-white p-8 rounded-lg shadow-lg">
-
       <h2 className="text-2xl font-bold text-green-700 mb-6">
         Report Garbage
       </h2>
@@ -47,6 +48,17 @@ function ReportWaste() {
           className="w-full border p-2 rounded"
         />
       </div>
+
+      {/* Image Preview */}
+      {preview && (
+        <div className="mb-4">
+          <img
+            src={preview}
+            alt="Garbage preview"
+            className="w-full rounded-lg shadow"
+          />
+        </div>
+      )}
 
       {/* Location Button */}
       <div className="mb-4">
@@ -65,11 +77,10 @@ function ReportWaste() {
         </p>
       )}
 
-      {/* Submit */}
+      {/* Submit Button */}
       <button className="w-full bg-green-700 text-white py-3 rounded hover:bg-green-800">
         Submit Complaint
       </button>
-
     </div>
   );
 }
