@@ -1,19 +1,23 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
-    <nav className="bg-green-700 text-white shadow-md">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        
-        <h1 className="text-xl font-bold">
-          Smart Waste System
-        </h1>
+    <nav className="bg-green-700 text-white p-4 flex justify-between">
 
-        <div className="space-x-6">
-          <button className="hover:text-green-200">Home</button>
-          <button className="hover:text-green-200">Report Waste</button>
-          <button className="hover:text-green-200">Dashboard</button>
-        </div>
+      <h1 className="font-bold text-lg">
+        Smart Waste System
+      </h1>
+
+      <div className="space-x-6">
+
+        <Link to="/">Dashboard</Link>
+
+        <Link to="/report">Report</Link>
+
+        <Link to="/map">Map</Link>
 
       </div>
+
     </nav>
   );
 }
