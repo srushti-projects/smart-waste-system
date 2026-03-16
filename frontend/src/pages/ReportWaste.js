@@ -51,7 +51,7 @@ function ReportWaste({ addReport }) {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 bg-white p-8 rounded-lg shadow-lg">
+    <div className="max-w-xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-xl">
       <h2 className="text-2xl font-bold text-green-700 mb-6">
         Report Garbage
       </h2>
