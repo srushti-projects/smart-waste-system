@@ -1,3 +1,4 @@
+import ReportsList from "./components/ReportsList";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import ReportWaste from "./pages/ReportWaste";
@@ -22,6 +23,7 @@ function App() {
       <div className="max-w-4xl mx-auto mt-10">
         <MapView reports={reports} />
       </div>
+      <ReportsList reports={reports} />
     </div>
   );
 }
