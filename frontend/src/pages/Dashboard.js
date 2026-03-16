@@ -1,4 +1,5 @@
 import { FaTrash, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import CountUp from "react-countup";
 
 function Dashboard({ reports }) {
   const totalReports = reports.length;
@@ -29,7 +30,7 @@ function Dashboard({ reports }) {
           </h3>
 
           <p className="text-4xl font-bold text-green-700">
-            {totalReports}
+            <CountUp end={totalReports} duration={1.5} />
           </p>
         </div>
 
@@ -42,7 +43,7 @@ function Dashboard({ reports }) {
           </h3>
 
           <p className="text-4xl font-bold text-yellow-500">
-            {totalReports}
+            <CountUp end={totalReports} duration={1.5} />
           </p>
         </div>
 
@@ -55,7 +56,7 @@ function Dashboard({ reports }) {
           </h3>
 
           <p className="text-4xl font-bold text-green-500">
-            0
+            <CountUp end={0} duration={1.5} />
           </p>
         </div>
 
