@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ReportWaste() {
+function ReportWaste({ addReport }) {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [location, setLocation] = useState(null);
@@ -28,6 +28,26 @@ function ReportWaste() {
         alert("Unable to retrieve location");
       }
     );
+  };
+
+  const handleSubmit = () => {
+    if (!location) {
+      alert("Please detect location first");
+      return;
+    }
+
+    addReport({
+      lat: location.lat,
+      lng: location.lng,
+      image: preview,
+    });
+
+    alert("Report submitted successfully!");
+
+    // Reset form
+    setImage(null);
+    setPreview(null);
+    setLocation(null);
   };
 
   return (
@@ -78,7 +98,10 @@ function ReportWaste() {
       )}
 
       {/* Submit Button */}
-      <button className="w-full bg-green-700 text-white py-3 rounded hover:bg-green-800">
+      <button
+        onClick={handleSubmit}
+        className="w-full bg-green-700 text-white py-3 rounded hover:bg-green-800"
+      >
         Submit Complaint
       </button>
     </div>
